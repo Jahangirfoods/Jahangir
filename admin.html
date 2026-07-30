@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JAHANGIR — Admin</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="admin-header">
+    <div class="header-inner">
+      <h1>JAHANGIR<span class="admin-flag">Admin</span></h1>
+      <p class="admin-subtitle">Manage your catalog, categories, and inventory</p>
+    </div>
+  </header>
+
+  <!-- Shown when logged out -->
+  <section class="login-panel" id="login-panel">
+    <div class="login-card">
+      <p class="login-eyebrow">Admin access</p>
+      <h2 class="login-title">Welcome back</h2>
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+        <button type="submit">Log in</button>
+        <p class="form-error" id="login-error" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Shown when logged in -->
+  <section class="admin-panel" id="admin-panel" hidden>
+    <div class="admin-toolbar">
+      <a href="index.html" class="ghost-link">View public catalog →</a>
+      <button id="logout-btn" class="ghost-link">Log out</button>
+    </div>
+
+    <!-- Category management -->
+    <details class="collapsible" id="category-manager">
+      <summary>Manage categories</summary>
+      <div class="collapsible-body">
+        <form id="category-form" class="inline-form">
+          <div class="field-group">
+            <label for="category-name">Category name</label>
+            <input type="text" id="category-name" placeholder="e.g. Baked Goods" required>
+          </div>
+          <div class="field-group">
+            <label for="category-parent">Parent category (optional)</label>
+            <select id="category-parent">
+              <option value="">None — top-level category</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="category-icon">Icon (optional)</label>
+            <input type="file" id="category-icon" accept="image/*">
+          </div>
+          <button type="submit">Add category</button>
+          <p class="form-error" id="category-error" hidden></p>
+        </form>
+
+        <ul class="category-list" id="category-list">
+          <!-- populated by admin.js -->
+        </ul>
+      </div>
+    </details>
+
+    <!-- Add / edit item -->
+    <form id="add-form" class="add-form">
+      <h2 id="add-form-title">Add item</h2>
+
+      <label for="item-name">Name</label>
+      <input type="text" id="item-name" required>
+
+      <label for="item-category">Category</label>
+      <select id="item-category" required>
+        <option value="" disabled selected>Select a category…</option>
+      </select>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label for="item-weight-value">Weight</label>
+          <input type="number" id="item-weight-value" min="0" step="any" placeholder="e.g. 250">
+        </div>
+        <div class="field-group field-group-narrow">
+          <label for="item-weight-unit">Unit</label>
+          <select id="item-weight-unit">
+            <option value="g">g</option>
+            <option value="kg">kg</option>
+            <option value="oz">oz</option>
+            <option value="lb">lb</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="item-description">Description</label>
+      <textarea id="item-description" rows="3" required></textarea>
+
+      <div class="checkbox-row">
+        <label class="checkbox-label">
+          <input type="checkbox" id="item-in-stock" checked>
+          In stock
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" id="item-featured">
+          👑 King's Pick
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" id="item-bestseller">
+          🔥 Best Seller
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" id="item-frozen">
+          ❄️ Frozen
+        </label>
+      </div>
+
+      <label for="item-photo">Photos <span class="label-note" id="photo-note">first one is used as the cover photo</span></label>
+      <input type="file" id="item-photo" accept="image/*" multiple>
+      <div class="extra-photos-list" id="extra-photos-list"></div>
+
+      <div class="form-actions">
+        <button type="submit" id="add-form-submit">Add to catalog</button>
+        <button type="button" id="cancel-edit-btn" class="ghost-link" hidden>Cancel edit</button>
+      </div>
+      <p class="form-error" id="add-error" hidden></p>
+      <p class="form-success" id="add-success" hidden></p>
+    </form>
+
+    <div class="list-heading-row">
+      <h2 class="list-heading">Current items <span class="item-count" id="item-count"></span></h2>
+      <button id="export-csv-btn" class="ghost-link export-btn">Export CSV</button>
+    </div>
+    <input type="search" id="admin-search" class="search-input" placeholder="Search by name or category…">
+    <div class="admin-list" id="admin-list">
+      <!-- items injected by admin.js -->
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

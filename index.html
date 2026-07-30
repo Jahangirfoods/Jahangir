@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JAHANGIR — The King of Taste</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="JAHANGIR — spices, preserves, and staples from a trusted trading house. Browse our full catalog online.">
+  <meta name="theme-color" content="#0E6B5C">
+
+  <!-- Open Graph (Facebook, WhatsApp, Instagram link previews) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="JAHANGIR — The King of Taste">
+  <meta property="og:description" content="Spices, preserves, and staples from a trusted trading house. Browse our full catalog online.">
+  <meta property="og:image" content="REPLACE_WITH_YOUR_SITE_URL/og-image.jpg">
+  <!-- Set this to your real deployed URL once live, e.g. https://jahangir.vercel.app -->
+  <meta property="og:url" content="REPLACE_WITH_YOUR_SITE_URL">
+
+  <!-- Twitter/X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JAHANGIR — The King of Taste">
+  <meta name="twitter:description" content="Spices, preserves, and staples from a trusted trading house.">
+  <meta name="twitter:image" content="REPLACE_WITH_YOUR_SITE_URL/og-image.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <span class="preloader-mark">JAHANGIR</span>
+      <span class="preloader-rule"></span>
+      <span class="preloader-tagline">The king of taste</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <svg class="hero-seal" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="58" fill="transparent"/>
+      <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="60" cy="60" r="48" fill="none" stroke="currentColor" stroke-width="0.75"/>
+      <text x="60" y="70" text-anchor="middle" class="hero-seal-letter">J</text>
+      <path id="seal-arc" d="M 60 12 A 48 48 0 0 1 108 60" fill="none"/>
+      <path d="M 18 40 A 48 48 0 0 0 18 80" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+    </svg>
+    <div class="hero-inner">
+      <h1><a href="#" id="home-link">JAHANGIR</a></h1>
+      <p class="hero-tagline">The King of Taste</p>
+      <p id="hero-greeting" class="hero-greeting"></p>
+      <p>Spices, preserves, and staples brought in with the same care we'd want for our own kitchen. Browse what's in the warehouse this week.</p>
+    </div>
+  </section>
+
+  <div class="search-row">
+    <input type="search" id="search-input" class="search-input" placeholder="Search items…" aria-label="Search items">
+    <button id="surprise-btn" class="surprise-btn" type="button">🎲 Surprise me</button>
+  </div>
+
+  <section class="bestsellers-section" id="bestsellers-section" hidden>
+    <div class="bestsellers-inner">
+      <p class="bestsellers-heading">🔥 Best Sellers</p>
+      <div class="bestsellers-row" id="bestsellers-row"></div>
+    </div>
+  </section>
+
+  <nav class="filter-row" id="filter-row" aria-label="Filter by category">
+    <button class="filter-chip is-active" data-category="all">All items</button>
+    <!-- category chips injected by catalog.js -->
+  </nav>
+
+  <main class="catalog-grid" id="item-grid">
+    <!-- items injected by catalog.js -->
+  </main>
+
+  <div class="load-more-row">
+    <button id="load-more-btn" class="load-more-btn" hidden>Load more</button>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">JAHANGIR</p>
+      <p class="footer-tagline">The King of Taste</p>
+      <div class="footer-contact">
+        <div class="phone-row">
+          <a href="tel:01020940253" class="footer-phone">010-2094-0253</a>
+          <span class="contact-icons">
+            <span class="icon-badge icon-kakao" title="Available on KakaoTalk">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 4C6.5 4 2 7.3 2 11.4c0 2.6 1.8 4.9 4.5 6.2-.2.7-.8 2.7-.9 3.1 0 0-.1.3.1.4.2.1.4 0 .4 0 .5-.1 3-2 3.9-2.7.7.1 1.3.2 2 .2 5.5 0 10-3.3 10-7.4S17.5 4 12 4Z"/></svg>
+            </span>
+            <a href="https://wa.me/821020940253" target="_blank" rel="noopener" class="icon-badge icon-whatsapp" title="Message on WhatsApp">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C6.5 2 2 6.4 2 11.8c0 1.9.6 3.7 1.6 5.2L2 22l5.2-1.5c1.5.8 3.1 1.3 4.8 1.3 5.5 0 10-4.4 10-9.9S17.5 2 12 2Zm5.3 14c-.2.6-1.3 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.7 1.9.8 2.1.1.2.1.4 0 .6-.1.2-.2.3-.3.5-.2.2-.3.3-.5.5-.2.2-.4.4-.2.7.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.2.5.2.6.4.1.1.1.7-.1 1.3Z"/></svg>
+            </a>
+          </span>
+        </div>
+        <div class="phone-row">
+          <a href="tel:01043596446" class="footer-phone">010-4359-6446</a>
+          <span class="contact-icons">
+            <span class="icon-badge icon-kakao" title="Available on KakaoTalk">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 4C6.5 4 2 7.3 2 11.4c0 2.6 1.8 4.9 4.5 6.2-.2.7-.8 2.7-.9 3.1 0 0-.1.3.1.4.2.1.4 0 .4 0 .5-.1 3-2 3.9-2.7.7.1 1.3.2 2 .2 5.5 0 10-3.3 10-7.4S17.5 4 12 4Z"/></svg>
+            </span>
+            <a href="https://wa.me/821043596446" target="_blank" rel="noopener" class="icon-badge icon-whatsapp" title="Message on WhatsApp">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C6.5 2 2 6.4 2 11.8c0 1.9.6 3.7 1.6 5.2L2 22l5.2-1.5c1.5.8 3.1 1.3 4.8 1.3 5.5 0 10-4.4 10-9.9S17.5 2 12 2Zm5.3 14c-.2.6-1.3 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.7 1.9.8 2.1.1.2.1.4 0 .6-.1.2-.2.3-.3.5-.2.2-.3.3-.5.5-.2.2-.4.4-.2.7.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.2.5.2.6.4.1.1.1.7-.1 1.3Z"/></svg>
+            </a>
+          </span>
+        </div>
+        <div class="phone-row">
+          <a href="tel:01086530253" class="footer-phone">010-8653-0253</a>
+          <span class="contact-icons">
+            <span class="icon-badge icon-kakao" title="Available on KakaoTalk">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 4C6.5 4 2 7.3 2 11.4c0 2.6 1.8 4.9 4.5 6.2-.2.7-.8 2.7-.9 3.1 0 0-.1.3.1.4.2.1.4 0 .4 0 .5-.1 3-2 3.9-2.7.7.1 1.3.2 2 .2 5.5 0 10-3.3 10-7.4S17.5 4 12 4Z"/></svg>
+            </span>
+            <a href="https://wa.me/821086530253" target="_blank" rel="noopener" class="icon-badge icon-whatsapp" title="Message on WhatsApp">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C6.5 2 2 6.4 2 11.8c0 1.9.6 3.7 1.6 5.2L2 22l5.2-1.5c1.5.8 3.1 1.3 4.8 1.3 5.5 0 10-4.4 10-9.9S17.5 2 12 2Zm5.3 14c-.2.6-1.3 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.7 1.9.8 2.1.1.2.1.4 0 .6-.1.2-.2.3-.3.5-.2.2-.3.3-.5.5-.2.2-.4.4-.2.7.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.2.5.2.6.4.1.1.1.7-.1 1.3Z"/></svg>
+            </a>
+          </span>
+        </div>
+        <div class="phone-row">
+          <a href="tel:01046387180" class="footer-phone">010-4638-7180</a>
+          <span class="contact-icons">
+            <span class="icon-badge icon-kakao" title="Available on KakaoTalk">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 4C6.5 4 2 7.3 2 11.4c0 2.6 1.8 4.9 4.5 6.2-.2.7-.8 2.7-.9 3.1 0 0-.1.3.1.4.2.1.4 0 .4 0 .5-.1 3-2 3.9-2.7.7.1 1.3.2 2 .2 5.5 0 10-3.3 10-7.4S17.5 4 12 4Z"/></svg>
+            </span>
+            <a href="https://wa.me/821046387180" target="_blank" rel="noopener" class="icon-badge icon-whatsapp" title="Message on WhatsApp">
+              <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C6.5 2 2 6.4 2 11.8c0 1.9.6 3.7 1.6 5.2L2 22l5.2-1.5c1.5.8 3.1 1.3 4.8 1.3 5.5 0 10-4.4 10-9.9S17.5 2 12 2Zm5.3 14c-.2.6-1.3 1.2-1.9 1.2-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.7 1.9.8 2.1.1.2.1.4 0 .6-.1.2-.2.3-.3.5-.2.2-.3.3-.5.5-.2.2-.4.4-.2.7.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.2.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.2.5.2.6.4.1.1.1.7-.1 1.3Z"/></svg>
+            </a>
+          </span>
+        </div>
+      </div>
+      <div class="footer-hours">
+        <p class="footer-hours-days">Monday – Saturday · 10AM – 7PM</p>
+        <p class="footer-hours-lunch">Lunch break 1PM – 2PM</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="item-modal" hidden>
+    <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-gallery">
+        <img class="modal-main-photo" id="modal-main-photo" src="" alt="">
+        <div class="modal-thumb-row" id="modal-thumb-row"></div>
+      </div>
+      <div class="modal-body">
+        <span class="item-tag" id="modal-tag"></span>
+        <h2 class="modal-name" id="modal-name"></h2>
+        <p class="modal-weight" id="modal-weight"></p>
+        <p class="modal-desc" id="modal-desc"></p>
+
+        <button type="button" id="modal-copy-link" class="copy-link-btn">🔗 Copy link to this item</button>
+
+        <div class="modal-related" id="modal-related" hidden>
+          <p class="modal-related-label">You might also like</p>
+          <div class="modal-related-row" id="modal-related-row"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="empty-state" id="empty-state" hidden>Nothing here yet — check back soon.</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/catalog.js"></script>
+</body>
+</html>
