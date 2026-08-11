@@ -1405,10 +1405,10 @@ select:focus { border-color: var(--teal); outline: none; }
 
 .admin-row .delete-btn:hover { background: var(--error); color: #fff; }
 
-.hero-logo {
-  width: 140px !important;
-  max-width: 140px !important;
-  height: auto !important;
-  display: block;
-  margin: 0 auto 1rem;
+.hero-logo-corner {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 70px;
+  height: auto;
 }
