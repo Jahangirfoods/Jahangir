@@ -1406,7 +1406,8 @@ select:focus { border-color: var(--teal); outline: none; }
 .admin-row .delete-btn:hover { background: var(--error); color: #fff; }
 
 .hero-logo {
-  max-width: 180px;
+  width: 100%;
+  max-width: 140px;
   height: auto;
   display: block;
   margin: 0 auto 1rem;
