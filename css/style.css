@@ -332,6 +332,12 @@ body {
   gap: 28px;
   border-bottom: 1px solid var(--border);
 }
+@media (max-width: 600px) {
+  .filter-row {
+    gap: 10px;
+    padding: 16px 16px 0;
+  }
+}
 
 .filter-chip {
   position: relative;
@@ -353,6 +359,12 @@ body {
   height: 18px;
   border-radius: 4px;
   object-fit: cover;
+}
+@media (max-width: 600px) {
+  .filter-chip {
+    font-size: 0.82rem;
+    padding: 0 0 10px;
+  }
 }
 
 .chip-count {
