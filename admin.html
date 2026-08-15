@@ -142,8 +142,19 @@
       <h2 class="list-heading">Current items <span class="item-count" id="item-count"></span></h2>
       <button id="export-csv-btn" class="ghost-link export-btn">Export CSV</button>
     </div>
-    <input type="search" id="admin-search" class="search-input" placeholder="Search by name or category…">
-    <div class="admin-list" id="admin-list">
+  <input type="search" id="admin-search" class="search-input" placeholder="Search by name or category…">
+
+<div class="bulk-actions-bar" id="bulk-actions-bar" hidden>
+  <label class="checkbox-label">
+    <input type="checkbox" id="select-all-checkbox">
+    Select all
+  </label>
+  <span id="bulk-selected-count">0 selected</span>
+  <button type="button" id="bulk-in-stock-btn" class="ghost-link">Mark in stock</button>
+  <button type="button" id="bulk-out-stock-btn" class="ghost-link">Mark out of stock</button>
+</div>
+
+<div class="admin-list" id="admin-list">
       <!-- items injected by admin.js -->
     </div>
   </section>

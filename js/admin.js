@@ -23,6 +23,13 @@ const addError = document.getElementById('add-error');
 const addSuccess = document.getElementById('add-success');
 const adminList = document.getElementById('admin-list');
 
+const bulkActionsBar = document.getElementById('bulk-actions-bar');
+const selectAllCheckbox = document.getElementById('select-all-checkbox');
+const bulkSelectedCount = document.getElementById('bulk-selected-count');
+const bulkInStockBtn = document.getElementById('bulk-in-stock-btn');
+const bulkOutStockBtn = document.getElementById('bulk-out-stock-btn');
+
+let selectedItemIds = new Set();
 let categories = [];
 let editingItemId = null; // null = adding a new item, otherwise editing this item's id
 
@@ -491,7 +498,8 @@ function renderAdminList() {
     row.className = 'admin-row';
     const weightText = item.weight_value ? `${item.weight_value}${item.weight_unit}` : '';
     row.innerHTML = `
-      <img class="thumb" src="${item.photo_url}" alt="">
+  <input type="checkbox" class="item-select-checkbox" data-id="${item.id}" ${selectedItemIds.has(item.id) ? 'checked' : ''}>
+  <img class="thumb" src="${item.photo_url}" alt="">
       <div class="row-meta">
         <div class="row-name">${escapeHtml(item.name)}${item.in_stock === false ? ' <span class="stock-badge">Out of stock</span>' : ''}${item.is_featured ? ' <span class="flag-badge flag-featured">👑</span>' : ''}${item.is_bestseller ? ' <span class="flag-badge flag-bestseller">🔥</span>' : ''}${item.is_frozen ? ' <span class="flag-badge flag-frozen">❄️</span>' : ''}</div>
         <div class="row-cat">${escapeHtml(item.categories?.name || 'Uncategorized')}</div>
@@ -500,10 +508,16 @@ function renderAdminList() {
       <button class="edit-btn" data-id="${item.id}">Edit</button>
       <button class="delete-btn" data-id="${item.id}">Delete</button>
     `;
+    row.querySelector('.item-select-checkbox').addEventListener('change', (e) => {
+  if (e.target.checked) selectedItemIds.add(item.id);
+  else selectedItemIds.delete(item.id);
+  updateBulkBar();
+});
     row.querySelector('.edit-btn').addEventListener('click', () => enterEditMode(item));
     row.querySelector('.delete-btn').addEventListener('click', () => deleteItem(item.id));
     adminList.appendChild(row);
   });
+   updateBulkBar();
 }
 
 async function deleteItem(id) {
@@ -515,6 +529,50 @@ async function deleteItem(id) {
     return;
   }
   if (editingItemId === id) exitEditMode();
+  loadAdminItems();
+}
+function updateBulkBar() {
+  if (allAdminItems.length === 0) {
+    bulkActionsBar.hidden = true;
+    return;
+  }
+  bulkActionsBar.hidden = false;
+  bulkSelectedCount.textContent = `${selectedItemIds.size} selected`;
+  bulkInStockBtn.disabled = selectedItemIds.size === 0;
+  bulkOutStockBtn.disabled = selectedItemIds.size === 0;
+  const checkboxes = adminList.querySelectorAll('.item-select-checkbox');
+  selectAllCheckbox.checked = checkboxes.length > 0 && selectedItemIds.size === checkboxes.length;
+}
+
+selectAllCheckbox.addEventListener('change', () => {
+  const checkboxes = adminList.querySelectorAll('.item-select-checkbox');
+  checkboxes.forEach(cb => {
+    cb.checked = selectAllCheckbox.checked;
+    if (selectAllCheckbox.checked) selectedItemIds.add(cb.dataset.id);
+    else selectedItemIds.delete(cb.dataset.id);
+  });
+  updateBulkBar();
+});
+
+bulkInStockBtn.addEventListener('click', () => bulkUpdateStock(true));
+bulkOutStockBtn.addEventListener('click', () => bulkUpdateStock(false));
+
+async function bulkUpdateStock(inStock) {
+  if (selectedItemIds.size === 0) return;
+  const ids = [...selectedItemIds];
+  if (!confirm(`Mark ${ids.length} item(s) as ${inStock ? 'in stock' : 'out of stock'}?`)) return;
+
+  const { error } = await supabaseClient
+    .from('items')
+    .update({ in_stock: inStock })
+    .in('id', ids);
+
+  if (error) {
+    alert(`Could not update items: ${error.message}`);
+    return;
+  }
+
+  selectedItemIds.clear();
   loadAdminItems();
 }
 
